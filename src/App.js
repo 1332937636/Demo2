@@ -11,10 +11,10 @@ function App() {
   const { token: { colorBgContainer } } = theme.useToken();
   
   // 图表数据源 - 使用state管理
-  const [chartData, setChartData] = useState([]);
+  const [chartData, setChartData] = useState(null);
   
   // X轴数据 - 使用state管理
-  const [xAxisData, setXAxisData] = useState([]);
+  const [xAxisData, setXAxisData] = useState(null);
   
   // 模拟数据请求，延迟1秒后设置数据
   useEffect(() => {
@@ -138,7 +138,7 @@ function App() {
                 <Chart 
                   type="line"
                   dataSource={chartData}
-                  xAxisData={xAxisData}
+                  xAxisData={xAxisData || {}}
                   title="折线图示例"
                 />
               </div>
@@ -146,7 +146,7 @@ function App() {
                 <Chart 
                   type="bar"
                   dataSource={chartData}
-                  xAxisData={xAxisData}
+                  xAxisData={xAxisData || {}}
                   title="柱形图示例"
                 />
               </div>

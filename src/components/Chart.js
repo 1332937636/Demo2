@@ -6,16 +6,9 @@ const Chart = ({ type = 'line', dataSource = [], xAxisData = [], title = '', the
   const chartInstance = useRef(null);
 
   useEffect(() => {
-    // 初始化图表
-    if (chartRef.current) {
-      try {
         chartInstance.current = echarts.init(chartRef.current, theme);
         // 更新图表数据
         updateChart();
-      } catch (error) {
-        console.error('Failed to initialize chart:', error);
-      }
-    }
 
     // 窗口大小变化时重绘图表
     const handleResize = () => {
@@ -24,14 +17,6 @@ const Chart = ({ type = 'line', dataSource = [], xAxisData = [], title = '', the
       }
     };
     window.addEventListener('resize', handleResize);
-
-    // 清理函数
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      if (chartInstance.current) {
-        chartInstance.current.dispose();
-      }
-    };
   }, [theme]);
 
   useEffect(() => {
@@ -40,7 +25,6 @@ const Chart = ({ type = 'line', dataSource = [], xAxisData = [], title = '', the
   }, []);
 
   const updateChart = () => {
-    try {
       chartInstance.current.setOption({
         title: {
           text: title || '图表',
@@ -66,9 +50,6 @@ const Chart = ({ type = 'line', dataSource = [], xAxisData = [], title = '', the
           type: type,
         })),
       }, true);
-    } catch (error) {
-      console.error('Failed to update chart:', error);
-    }
   };
 
   return <div ref={chartRef} style={{ width: '100%', height: '100%' }} />;
