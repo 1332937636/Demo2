@@ -37,52 +37,9 @@ const Chart = ({ type = 'line', dataSource = [], xAxisData = [], title = '', the
   useEffect(() => {
     // 当数据源或图表类型变化时更新图表
     updateChart();
-  }, [dataSource, type]);
+  }, []);
 
   const updateChart = () => {
-    if (!chartInstance.current) {
-      return;
-    }
-
-    if (dataSource.length === 0 || xAxisData.length === 0) {
-      // 显示空数据提示
-      chartInstance.current.setOption({
-        title: {
-          text: title || '图表',
-          left: 'center',
-        },
-        tooltip: {
-          trigger: 'axis',
-        },
-        legend: {},
-        xAxis: {
-          type: 'category',
-          boundaryGap: false,
-          data: [],
-        },
-        yAxis: {
-          type: 'value',
-          axisLabel: {
-            formatter: '{value}',
-          },
-        },
-        series: [],
-        graphic: [
-          {
-            type: 'text',
-            left: 'center',
-            top: 'center',
-            style: {
-              text: '暂无数据',
-              fontSize: 18,
-              color: '#999',
-            },
-          },
-        ],
-      }, true);
-      return;
-    }
-
     try {
       chartInstance.current.setOption({
         title: {
