@@ -11,10 +11,10 @@ function App() {
   const { token: { colorBgContainer } } = theme.useToken();
   
   // 图表数据源 - 使用state管理
-  const [chartData, setChartData] = useState(null);
+  const [chartData, setChartData] = useState([]);
   
   // X轴数据 - 使用state管理
-  const [xAxisData, setXAxisData] = useState(null);
+  const [xAxisData, setXAxisData] = useState([]);
   
   // 模拟数据请求，延迟1秒后设置数据
   useEffect(() => {
